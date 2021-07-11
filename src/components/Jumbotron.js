@@ -6,7 +6,7 @@ class Jumbotron extends Component {
     return (
       <div>
         {Jumbodata.map((item) => (
-          <Jumbotronitem data={item} />
+          <Jumbotronitem key={item.id} data={item} />
         ))}
       </div>
     );
