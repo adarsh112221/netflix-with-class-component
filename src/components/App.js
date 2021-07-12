@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Accordian from './Accordian';
 import Footer from './footer';
 import Jumbotron from './Jumbotron';
 class App extends Component {
@@ -6,6 +7,7 @@ class App extends Component {
     return (
       <div>
         <Jumbotron/>
+        <Accordian/>
         <Footer/>
       </div>
     );
