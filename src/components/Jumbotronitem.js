@@ -11,7 +11,7 @@ class Jumbotronitem extends Component {
           <h2 className="jumbo-subTitle">{data.subTitle}</h2>
         </div>
         <div className="jumbo-Pane">
-          <div className="jumbo-Image" ><img src={data.image} alt={data.alt}/></div>
+          < img  className="jumbo-image" src={data.image} alt={data.alt}/>
         </div>
       </div></div>
     );
