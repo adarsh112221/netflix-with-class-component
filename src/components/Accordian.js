@@ -8,7 +8,7 @@ class Accordian extends Component {
           <div className="accordian-inner">
         <h1 className="accordian-title">Frequently Asked Questions</h1>
         {faqs.map((item) => (
-          <AccordianItem item={item}></AccordianItem>
+          <AccordianItem key={item.id} item={item}></AccordianItem>
         ))}
       </div>
       </div>
