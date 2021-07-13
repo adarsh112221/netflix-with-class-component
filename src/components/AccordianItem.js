@@ -6,24 +6,29 @@ class AccordianItem extends Component {
   //   super(props);
   // }
   handleOnClick = () => {
-    const { value } = this.props;
+    const {value,id} = this.props;
+    if(id==this.props.item.id)
     this.props.dispatch(showbody(!value,this.props.item.id));
+    else
+    {
+      this.props.dispatch(showbody(true,this.props.item.id));
+    }
   };
   render() {
-    const { item, value,id} = this.props;
-    console.log("value", value);
+    const { item,value,id} = this.props;
     return (
       <div onClick={this.handleOnClick} className="accordian-item">
         <div className="accordian-header">
           {item.header}
-          {value ? (
+          {value&&(id==item.id)? (
             <img src="/images/icons/close-slim.png" alt="open" />
           ) : (
             <img src="/images/icons/add.png" alt="close" />
           )}
         </div>
-        {value&&(id==item.id)? <div className="accordian-body">{item.body}</div> : null}
-      </div>
+        {value&&(id===item.id)?<div className="accordian-body open"><span>{item.body}</span></div>:<div className="accordian-body  closed" ><span>{item.body}</span></div>}
+        </div>
+      
     );
   }
 }
