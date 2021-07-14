@@ -148,7 +148,6 @@ code {
   flex-direction: column;
   max-width: 80%;
   margin: auto;
-
 }
 .accordian-title {
   font-size: 50px;
@@ -212,17 +211,15 @@ code {
   user-select: none;
   overflow: hidden;
   /* padding: 10px; */
- 
 }
- .closed {
+.closed {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 }
- .open {
+.open {
   max-height: 1200px;
   transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
-
 }
 @media (max-width: 600px) {
   .accordian-body {
@@ -234,22 +231,20 @@ code {
   display: block;
   padding: 0.8em 2.2em 0.8em 1.2em;
 }
-.opt-form-container
-{  display: flex;
+.opt-form-container {
+  display: flex;
   justify-content: center;
   height: 100%;
   margin-top: 20px;
-  flex-wrap: wrap
-
+  flex-wrap: wrap;
 }
 @media (max-width: 1000px) {
-  .opt-form-container{
-  flex-direction: column;
-  align-items: center;
+  .opt-form-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
-.opt-form-Input
-{
+.opt-form-Input {
   max-width: 450px;
   width: 100%;
   border: 0;
@@ -262,8 +257,7 @@ code {
 .opt-form-Input:focus {
   outline: none;
 }
-.opt-form-button
-{
+.opt-form-button {
   display: flex;
   align-items: center;
   height: 71px;
@@ -285,30 +279,113 @@ code {
   }
 }
 @media (max-width: 1000px) {
-  .opt-form-button img{
-  width: 16px;
+  .opt-form-button img {
+    width: 16px;
   }
 }
 .opt-form-button:hover {
   background: #f40612;
 }
 @media (max-width: 1000px) {
-  .opt-form-button{
-  height: 50px;
-  font-size: 16px;
-  margin-top: 20px;
-  font-weight: bold;
+  .opt-form-button {
+    height: 50px;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
   }
 }
-.opt-form-break{
+.opt-form-break {
   flex-basis: 100%;
   height: 0;
 }
-.opt-form-container p{
+.opt-form-container p {
   font-size: 19.2px;
   color: white;
   text-align: center;
 }
-.accordian-frame{
+.accordian-frame {
   margin-bottom: 40px;
+}
+.header-background {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.35)
+    ),
+    url("./home-bg.jpg"), top left / cover no-repeat;
+}
+.header-container {
+  display: flex;
+  margin: 0 56px;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-container a {
+  display: flex;
+}
+
+@media (max-width: 1000px) {
+  .header-container {
+    margin: 0 30px;
+  }
+}
+.header-Button {
+  display: block;
+  background-color: #e50914;
+  height: fit-content;
+  color: white;
+  border: 0;
+  font-size: 15px;
+  border-radius: 3px;
+  padding: 8px 17px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.header-Button:hover {
+  background: #f40612;
+}
+.header-Logo {
+  height: 36px;
+  width: 134px;
+  margin-right: 40px;
+}
+@media (min-width: 1449px) {
+  .header-Logo {
+    height: 45px;
+    width: 167px;
+  }
+}
+.feature-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 8px solid #222;
+  text-align: center;
+  padding: 165px 45px;
+}
+.feature-title {
+  color: white;
+  max-width: 640px;
+  font-size: 50px;
+  font-weight: 500;
+  margin: auto;
+}
+@media (max-width: 600px) {
+  .feature-title {
+    font-size: 35px;
+  }
+}
+.feature-subtitle {
+  color: white;
+  font-size: 26px;
+  font-weight: normal;
+  margin: 16px auto;
+}
+@media (max-width: 600px) {
+  .feature-subtitle {
+    font-size: 18px;
+  }
 }

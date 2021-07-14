@@ -5,7 +5,7 @@ class Optform extends Component {
     return (
       <div className="opt-form-container">
         <input placeholder="Email address" className="opt-form-Input" />
-        <button class="opt-form-button"> Try it now<img src="/images/icons/chevron-right.png" alt="Try Now"/></button>
+        <button className="opt-form-button"> Try it now<img src="/images/icons/chevron-right.png" alt="Try Now"/></button>
         <div className="opt-form-break"></div>
         <p>
           Ready to watch? Enter your email to create or restart your membership.
