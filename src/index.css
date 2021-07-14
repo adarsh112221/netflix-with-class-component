@@ -108,7 +108,7 @@ code {
 @media (max-width: 1000px) {
   .footer-row {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 10px;
+    grid-gap: 50px;
   }
 }
 .footer-coloumn {
@@ -233,4 +233,82 @@ code {
 .accordian-body span {
   display: block;
   padding: 0.8em 2.2em 0.8em 1.2em;
+}
+.opt-form-container
+{  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap
+
+}
+@media (max-width: 1000px) {
+  .opt-form-container{
+  flex-direction: column;
+  align-items: center;
+  }
+}
+.opt-form-Input
+{
+  max-width: 450px;
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  height: 70px;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 500;
+}
+.opt-form-Input:focus {
+  outline: none;
+}
+.opt-form-button
+{
+  display: flex;
+  align-items: center;
+  height: 71px;
+  background: #e50914;
+  color: white;
+  text-transform: uppercase;
+  padding: 0 32px;
+  font-size: 26px;
+  border: 0;
+  cursor: pointer;
+}
+.opt-form-button img {
+  margin-left: 10px;
+  filter: brightness(0) invert(1);
+  width: 24px;
+
+  @media (max-width: 1000px) {
+    width: 16px;
+  }
+}
+@media (max-width: 1000px) {
+  .opt-form-button img{
+  width: 16px;
+  }
+}
+.opt-form-button:hover {
+  background: #f40612;
+}
+@media (max-width: 1000px) {
+  .opt-form-button{
+  height: 50px;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+  }
+}
+.opt-form-break{
+  flex-basis: 100%;
+  height: 0;
+}
+.opt-form-container p{
+  font-size: 19.2px;
+  color: white;
+  text-align: center;
+}
+.accordian-frame{
+  margin-bottom: 40px;
 }
