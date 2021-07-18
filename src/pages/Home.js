@@ -9,9 +9,7 @@ export class Home extends Component {
   render() {
     return (
       <>
-        <Header>
-          
-        </Header>
+        <Header></Header>
         <Jumbotron />
         <Accordian />
         <Footer />

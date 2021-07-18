@@ -11,7 +11,7 @@ class Header extends Component {
           <Link to={"/"}>
             <img alt="netflix" src={Logo} className="header-Logo" />
           </Link>
-          <Link to={"/signin"} className="header-Button" href="/signin">
+          <Link to={"/signin"} className="header-Button">
             Sign In
           </Link>
         </div>
