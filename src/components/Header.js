@@ -4,7 +4,11 @@ import Feature from "./Feature";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const { Comp } = this.props;
     return (
       <div className="header-background">
         <div className="header-container">
@@ -15,7 +19,7 @@ class Header extends Component {
             Sign In
           </Link>
         </div>
-        <Feature />
+        <Comp />
       </div>
     );
   }
