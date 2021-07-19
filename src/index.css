@@ -4,7 +4,7 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; 
+  -moz-osx-font-smoothing: grayscale;
 }
 html,
 body {
@@ -389,7 +389,7 @@ code {
     font-size: 18px;
   }
 }
-*{
+* {
   box-sizing: border-box;
 }
 .form-container {
