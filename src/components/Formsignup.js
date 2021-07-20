@@ -10,6 +10,7 @@ class Formsignup extends Component {
       password: "",
       FirstName: "",
       error: "",
+      isloggedin: false,
     };
   }
   setemailaddress = (e) => {
@@ -47,10 +48,11 @@ class Formsignup extends Component {
             photoURl: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            <Redirect to={BROWSE} />;
+            this.setState({ isloggedin: true });
           });
       })
       .catch((errors) => {
+        console.log("hello");
         this.setState({
           Emailaddress: "",
           password: "",
@@ -60,7 +62,9 @@ class Formsignup extends Component {
       });
   };
   render() {
-    const { Emailaddress, password, FirstName, error } = this.state;
+    const { Emailaddress, password, isloggedin, FirstName, error } = this.state;
+    if(isloggedin)
+    { return <Redirect to={BROWSE}/>}
     return (
       <div className="form-container">
         <h1 className="form-title">Sign up</h1>
