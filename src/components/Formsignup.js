@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, Redirect } from "react-router-dom";
+import { BROWSE } from "../fixtures/Routes";
+import { firebase } from "../lib/firebase.prod";
 class Formsignup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Emailaddress: "",
       password: "",
-      confirmpassword: "",
+      FirstName: "",
+      error: "",
     };
   }
   setemailaddress = (e) => {
@@ -20,24 +22,50 @@ class Formsignup extends Component {
       password: e.target.value,
     });
   };
-  setconfirmpassword = (e) => {
+  setname = (e) => {
     this.setState({
-      confirmpassword: e.target.value,
+      FirstName: e.target.value,
     });
   };
   Check = () => {
-    const { Emailaddress, password, confirmpassword } = this.state;
-    if (Emailaddress !== "" && password !== "" && confirmpassword !== "") {
+    const { Emailaddress, password, FirstName } = this.state;
+    if (Emailaddress !== "" && password !== "" && FirstName !== "") {
       return true;
     }
     return false;
   };
+  handleSignin = (event) => {
+    const { Emailaddress, FirstName, password } = this.state;
+    event.preventDefault();
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(Emailaddress, password)
+      .then((result) => {
+        result.user
+          .updateProfile({
+            displayName: FirstName,
+            photoURl: Math.floor(Math.random() * 5) + 1,
+          })
+          .then(() => {
+            <Redirect to={BROWSE} />;
+          });
+      })
+      .catch((errors) => {
+        this.setState({
+          Emailaddress: "",
+          password: "",
+          FirstName: "",
+          error: errors.message,
+        });
+      });
+  };
   render() {
-    const { Emailaddress, password, confirmpassword } = this.state;
+    const { Emailaddress, password, FirstName, error } = this.state;
     return (
       <div className="form-container">
         <h1 className="form-title">Sign up</h1>
-        <form className="form-base">
+        <form className="form-base" onSubmit={this.handleSignin}>
+          {error && <div className="form-error">{error}</div>}
           <input
             className="form-input"
             onChange={this.setemailaddress}
@@ -54,10 +82,9 @@ class Formsignup extends Component {
           />
           <input
             className="form-input"
-            type="password"
-            onChange={this.setconfirmpassword}
-            value={confirmpassword}
-            placeholder="Confirm password"
+            onChange={this.setname}
+            value={FirstName}
+            placeholder="Name"
           />
 
           {this.Check() ? (
