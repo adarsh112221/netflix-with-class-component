@@ -35,7 +35,7 @@ class Formsignup extends Component {
     }
     return false;
   };
-  handleSignin = (event) => {
+  handleSignup = (event) => {
     const { Emailaddress, FirstName, password } = this.state;
     event.preventDefault();
     firebase
@@ -45,7 +45,7 @@ class Formsignup extends Component {
         result.user
           .updateProfile({
             displayName: FirstName,
-            photoURl: Math.floor(Math.random() * 5) + 1,
+            photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
             this.setState({ isloggedin: true });
@@ -63,12 +63,13 @@ class Formsignup extends Component {
   };
   render() {
     const { Emailaddress, password, isloggedin, FirstName, error } = this.state;
-    if(isloggedin)
-    { return <Redirect to={BROWSE}/>}
+    if (isloggedin) {
+      return <Redirect to={BROWSE} />;
+    }
     return (
       <div className="form-container">
         <h1 className="form-title">Sign up</h1>
-        <form className="form-base" onSubmit={this.handleSignin}>
+        <form className="form-base" onSubmit={this.handleSignup}>
           {error && <div className="form-error">{error}</div>}
           <input
             className="form-input"

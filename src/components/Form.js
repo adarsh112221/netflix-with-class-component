@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, Redirect } from "react-router-dom";
+import { BROWSE } from "../fixtures/Routes";
+import { firebase } from "../lib/firebase.prod";
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Emailaddress: "",
       password: "",
+      isLoggedIn: false,
+      error: "",
     };
   }
   setemailaddress = (e) => {
@@ -19,6 +22,27 @@ class Form extends Component {
       password: e.target.value,
     });
   };
+  handleSignin = (event) => {
+    const { Emailaddress, isLoggedIn, password } = this.state;
+    event.preventDefault();
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(Emailaddress, password)
+      .then(() => {
+        this.setState({
+          isLoggedIn: true,
+        });
+        //push to the browse page
+      })
+      .catch((error) => {
+        this.setState({
+          Emailaddress: "",
+          password: "",
+          error: error.message,
+        });
+      });
+  };
   Check = () => {
     const { Emailaddress, password } = this.state;
     if (Emailaddress !== "" && password !== "") {
@@ -27,11 +51,15 @@ class Form extends Component {
     return false;
   };
   render() {
-    const { Emailaddress, password } = this.state;
+    const { Emailaddress, password, isLoggedIn, error } = this.state;
+    
+      if(isLoggedIn) {return <Redirect to={BROWSE} />;
+    }
     return (
       <div className="form-container">
         <h1 className="form-title">Sign In</h1>
-        <form className="form-base">
+        <form className="form-base" onSubmit={this.handleSignin}>
+          {error && <div className="form-error">{error}</div>}
           <input
             className="form-input"
             onChange={this.setemailaddress}
@@ -48,9 +76,9 @@ class Form extends Component {
           />
 
           {this.Check() ? (
-            <button  className="form-submit">Sign In</button>
+            <button className="form-submit">Sign In</button>
           ) : (
-            <button disabled  className="form-submit">
+            <button disabled className="form-submit">
               Sign In
             </button>
           )}
