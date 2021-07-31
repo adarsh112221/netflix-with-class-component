@@ -1,5 +1,6 @@
 import { each } from "async";
 import React, { Component } from "react";
+import BrowseContainer from "../components/BrowseContainer";
 import { firebase } from "../lib/firebase.prod";
 export default class Browse extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export default class Browse extends Component {
     const { filmscollection,seriescollection} = this.state;
     const films=filmscollection;
     const series=seriescollection;
-    return <div>hello this is browse page</div>;
+    const slides = selectionFilter({ series, films });
+    return <BrowseContainer slides={slides} />;
   }
 }
