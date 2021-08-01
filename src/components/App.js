@@ -28,8 +28,28 @@ const PrivateRoute = (privateRouteProps) => {
   );
 };
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: JSON.parse(localStorage.getItem("authUser")),
+    };
+  }
+  componentDidMount() {
+    const listener = firebase.auth().onAuthStateChanged((authUser) => {
+      if (authUser) {
+        localStorage.setItem("authUser", JSON.stringify(authUser));
+        this.setState({ user: authUser });
+      } else {
+        localStorage.removeItem("authUser");
+        this.setState({ user: null });
+      }
+    });
+    return () => listener();
+  }
+
   render() {
-    const user =null;
+    const { user } = this.state;
+    console.log(user);
     console.log(firebase);
     return (
       <Router>
