@@ -27,6 +27,32 @@ const PrivateRoute = (privateRouteProps) => {
     />
   );
 };
+
+function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        if (!user) {
+          return children;
+        }
+
+        if (user) {
+          return (
+            <Redirect
+              to={{
+                pathname: loggedInPath,
+              }}
+            />
+          );
+        }
+
+        return null;
+      }}
+    />
+  );
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +61,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    const listener = firebase.auth().onAuthStateChanged((authUser) => {
+    firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
         localStorage.setItem("authUser", JSON.stringify(authUser));
         this.setState({ user: authUser });
@@ -44,25 +70,32 @@ class App extends Component {
         this.setState({ user: null });
       }
     });
-    return () => listener();
   }
 
   render() {
     const { user } = this.state;
     console.log(user);
-    console.log(firebase);
     return (
       <Router>
-        <Route exact path={HOME}>
-          <Home />
-        </Route>
-        <PrivateRoute user={user} path={BROWSE} />
-        <Route exact path={SIGNIN}>
-          <Signin />
-        </Route>
-        <Route exact path={SIGNUP}>
+        <IsUserRedirect
+          user={user}
+          loggedInPath={BROWSE}
+          path={SIGNUP}
+        >
           <Signup />
-        </Route>
+        </IsUserRedirect>
+
+        <IsUserRedirect
+          user={user}
+          loggedInPath={BROWSE}
+          path={SIGNIN}
+        >
+          <Signin />
+        </IsUserRedirect>
+        <IsUserRedirect user={user} loggedInPath={BROWSE} exact path={HOME}>
+          <Home />
+        </IsUserRedirect>
+        <PrivateRoute user={user} path={BROWSE} />
       </Router>
     );
   }

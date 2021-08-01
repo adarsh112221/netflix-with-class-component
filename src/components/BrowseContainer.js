@@ -5,7 +5,6 @@ class BrowseContainer extends Component {
         return (
             <div>
                 hello guys
-                
             </div>
         );
     }
