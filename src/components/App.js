@@ -28,13 +28,13 @@ const PrivateRoute = (privateRouteProps) => {
   );
 };
 
-function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
+function IsUserRedirect({ user, loggedInPath,Comp, children, ...rest }) {
   return (
     <Route
       {...rest}
       render={() => {
         if (!user) {
-          return children;
+          return <Comp/>;
         }
 
         if (user) {
@@ -77,24 +77,9 @@ class App extends Component {
     console.log(user);
     return (
       <Router>
-        <IsUserRedirect
-          user={user}
-          loggedInPath={BROWSE}
-          path={SIGNUP}
-        >
-          <Signup />
-        </IsUserRedirect>
-
-        <IsUserRedirect
-          user={user}
-          loggedInPath={BROWSE}
-          path={SIGNIN}
-        >
-          <Signin />
-        </IsUserRedirect>
-        <IsUserRedirect user={user} loggedInPath={BROWSE} exact path={HOME}>
-          <Home />
-        </IsUserRedirect>
+        <IsUserRedirect user={user} Comp={Home} loggedInPath={BROWSE} exact path={HOME}/>
+        <IsUserRedirect user={user} Comp={Signup} loggedInPath={BROWSE} exact path={SIGNUP}/>
+        <IsUserRedirect user={user} Comp={Signin} loggedInPath={BROWSE} exact path={SIGNIN}/>
         <PrivateRoute user={user} path={BROWSE} />
       </Router>
     );
