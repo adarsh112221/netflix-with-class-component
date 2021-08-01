@@ -1,4 +1,4 @@
-import { each } from "async";
+import selectionFilter from "../utils/selection-filter";
 import React, { Component } from "react";
 import BrowseContainer from "../components/BrowseContainer";
 import { firebase } from "../lib/firebase.prod";
@@ -10,9 +10,11 @@ export default class Browse extends Component {
       films: "films",
       filmscollection: [],
       seirescollection: [],
+      loading: true,
     };
   }
   componentDidMount() {
+    console.log("aa");
     const items = ["series", "films"];
     items.map((item) =>
       firebase
@@ -32,6 +34,7 @@ export default class Browse extends Component {
           } else {
             this.setState({
               filmscollection: allContent,
+              loading: false,
             });
           }
         })
@@ -41,10 +44,16 @@ export default class Browse extends Component {
     );
   }
   render() {
-    const { filmscollection,seriescollection} = this.state;
-    const films=filmscollection;
-    const series=seriescollection;
-    const slides = selectionFilter({ series, films });
-    return <BrowseContainer slides={slides} />;
+    const { filmscollection, loading, seriescollection } = this.state;
+    const films = filmscollection;
+    const series = seriescollection;
+    console.log(series);
+
+    if (loading == true) {
+      return null;
+    } else {
+      const slides = selectionFilter({ series, films });
+      return <BrowseContainer slides={slides} />;
+    }
   }
 }
