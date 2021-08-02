@@ -48,7 +48,7 @@ class Formsignup extends Component {
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            this.setState({ isloggedin: true });
+            // this.setState({ isloggedin: true });
           });
       })
       .catch((errors) => {

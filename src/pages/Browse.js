@@ -12,8 +12,14 @@ export default class Browse extends Component {
       filmscollection: [],
       seirescollection: [],
       loading: true,
+      show: false,
     };
   }
+  setShow = () => {
+    this.setState({
+      show: true,
+    });
+  };
   componentDidMount() {
     console.log("aa");
     const items = ["series", "films"];
@@ -31,11 +37,11 @@ export default class Browse extends Component {
           if (item === "series") {
             this.setState({
               seriescollection: allContent,
+              loading: false,
             });
           } else {
             this.setState({
               filmscollection: allContent,
-              loading: false,
             });
           }
         })
@@ -45,23 +51,25 @@ export default class Browse extends Component {
     );
   }
   render() {
-    var show = false;
-    const { filmscollection, loading, seriescollection } = this.state;
+    const { filmscollection, loading, seriescollection, show } = this.state;
     const { user } = this.props;
     const films = filmscollection;
     const series = seriescollection;
-
-    return (
-      <Profile
-        user={user}
-        src={user.photoURL}
-        loading={loading}
-        name={user.displayName}
-      />
-    );
-    if (show == true) {
-      const slides = selectionFilter({ series, films });
-      return <BrowseContainer slides={slides} />;
+    const slides = loading ? null : selectionFilter({ series, films });
+    console.log(user);
+    if (show == false) {
+      return (
+        <Profile
+          setShow={this.setShow}
+          user={user}
+          src={user.photoURL}
+          loading={loading}
+          name={user.displayName}
+        />
+      );
+    } else {
+      console.log("browse");
+      return <BrowseContainer slides={slides} src={user.photoURL} />;
     }
   }
 }

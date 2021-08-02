@@ -28,7 +28,7 @@ const PrivateRoute = (privateRouteProps) => {
   );
 };
 
-function IsUserRedirect({ user, loggedInPath,Comp, children, ...rest }) {
+function IsUserRedirect({ user, loggedInPath, Comp, children, ...rest }) {
   return (
     <Route
       {...rest}
@@ -60,8 +60,8 @@ class App extends Component {
       user: JSON.parse(localStorage.getItem("authUser")),
     };
   }
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged((authUser) => {
+  componentDidMount(){
+    const listener = firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
         localStorage.setItem("authUser", JSON.stringify(authUser));
         this.setState({ user: authUser });
@@ -70,15 +70,35 @@ class App extends Component {
         this.setState({ user: null });
       }
     });
+    return () => listener();
   }
 
   render() {
     const { user } = this.state;
+    console.log(user)
     return (
       <Router>
-        <IsUserRedirect user={user} Comp={Home} loggedInPath={BROWSE} exact path={HOME}/>
-        <IsUserRedirect user={user} Comp={Signup} loggedInPath={BROWSE} exact path={SIGNUP}/>
-        <IsUserRedirect user={user} Comp={Signin} loggedInPath={BROWSE} exact path={SIGNIN}/>
+        <IsUserRedirect
+          user={user}
+          Comp={Home}
+          loggedInPath={BROWSE}
+          exact
+          path={HOME}
+        />
+        <IsUserRedirect
+          user={user}
+          Comp={Signup}
+          loggedInPath={BROWSE}
+          exact
+          path={SIGNUP}
+        />
+        <IsUserRedirect
+          user={user}
+          Comp={Signin}
+          loggedInPath={BROWSE}
+          exact
+          path={SIGNIN}
+        />
         <PrivateRoute user={user} path={BROWSE} />
       </Router>
     );
