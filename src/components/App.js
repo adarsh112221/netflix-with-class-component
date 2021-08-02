@@ -12,7 +12,7 @@ const PrivateRoute = (privateRouteProps) => {
       path={path}
       render={(props) => {
         return user ? (
-          <Browse {...props} />
+          <Browse user={user} {...props} />
         ) : (
           <Redirect
             to={{
@@ -74,7 +74,6 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(user);
     return (
       <Router>
         <IsUserRedirect user={user} Comp={Home} loggedInPath={BROWSE} exact path={HOME}/>

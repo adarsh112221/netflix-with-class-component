@@ -469,3 +469,73 @@ code {
 .form-link:hover {
   text-decoration: underline;
 }
+.profile-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border: 3px solid black;
+  cursor: pointer;
+}
+.display-Name {
+  color: #808080;
+  text-overflow: ellipsis;
+  font-size: 16px;
+}
+.display-Name:hover {
+  font-weight: bold;
+  color: #e5e5e5;
+}
+.profiles-container h1 {
+  width: 100%;
+  color: #fff;
+  font-size: 48px;
+  text-align: center;
+  font-weight: 500;
+}
+.profile-list {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+}
+.profile-item {
+  max-height: 200px;
+  max-width: 200px;
+  list-style-type: none;
+  text-align: center;
+}
+.profile-item:last-of-type {
+  margin-right: 0;
+}
+.profile-picture {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border: 3px solid black;
+  cursor: pointer;
+}
+.profile-Name {
+  color: #808080;
+  text-overflow: ellipsis;
+  font-size: 16px;
+}
+.profiles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  max-width: 80%;
+  justify-content: center;
+}
+.profile-item:hover > .profile-picture {
+  border: 3px solid white;
+}
+
+.profile-item:hover>.profile-Name {
+  font-weight: bold;
+  color: white;
+}
+
+.profile-item:last-of-type {
+  margin-right: 0;
+}

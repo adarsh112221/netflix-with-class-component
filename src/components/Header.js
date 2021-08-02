@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Logo from "../logo.svg";
-import Feature from "./Feature";
+
 import { Link } from "react-router-dom";
 
 class Header extends Component {
@@ -13,7 +13,7 @@ class Header extends Component {
       <div className="header-background">
         <div className="header-container">
           <Link to={"/"}>
-            <img alt="netflix" src={Logo} className="header-Logo" />
+            <img alt="netflix" src={Logo} className="header-Logo"/>
           </Link>
           <Link to={"/signin"} className="header-Button">
             Sign In

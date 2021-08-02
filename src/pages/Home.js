@@ -9,7 +9,7 @@ export class Home extends Component {
   render() {
     return (
       <>
-        <Header Comp={Feature}> </Header>
+        <Header Comp={Feature}/>
         <Jumbotron />
         <Accordian />
         <Footer />
