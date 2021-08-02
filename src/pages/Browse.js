@@ -2,7 +2,7 @@ import selectionFilter from "../utils/selection-filter";
 import React, { Component } from "react";
 import BrowseContainer from "../components/BrowseContainer";
 import { firebase } from "../lib/firebase.prod";
-import Profile from "../components/profile"
+import Profile from "../components/profile";
 export default class Browse extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +35,7 @@ export default class Browse extends Component {
           } else {
             this.setState({
               filmscollection: allContent,
+              loading: false,
             });
           }
         })
@@ -44,16 +45,21 @@ export default class Browse extends Component {
     );
   }
   render() {
+    var show = false;
     const { filmscollection, loading, seriescollection } = this.state;
     const { user } = this.props;
     const films = filmscollection;
     const series = seriescollection;
-    console.log(user);
-    if (loading == true) {
-      return (
-    <Profile user={user}/>
-      );
-    } else {
+
+    return (
+      <Profile
+        user={user}
+        src={user.photoURL}
+        loading={loading}
+        name={user.displayName}
+      />
+    );
+    if (show == true) {
       const slides = selectionFilter({ series, films });
       return <BrowseContainer slides={slides} />;
     }

@@ -3,7 +3,7 @@ import Logo from "../logo.svg";
 import { Link } from "react-router-dom";
 class Profile extends Component {
   render() {
-      const{user}=this.props
+      const{loading,src,name}=this.props
     return (
       <div>
         <div className="header-container">
@@ -17,9 +17,9 @@ class Profile extends Component {
             <li className="profile-item">
               <img
                 className="profile-picture"
-                src={`/images/users/${user.photoURL}.png`}
+                src={!loading?`/images/users/${src}.png`:'images/misc/loading.gif'}
               />
-              <p className="profile-Name">{user.displayName}</p>
+              <p className="profile-Name">{!loading ? name: null}</p>
             </li>
           </ul>
         </div>
