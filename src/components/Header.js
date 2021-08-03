@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../logo.svg";
-
+import joker from '../joker1.jpg'
+import home from '../home-bg.jpg'
 import { Link } from "react-router-dom";
 
 class Header extends Component {
@@ -10,7 +11,10 @@ class Header extends Component {
   render() {
     const { Comp } = this.props;
     return (
-      <div className="header-background">
+      <div className="header-background" style={{
+      backgroundSize:'contain',
+      background:`url(${Comp?home:joker})`
+      }}>
         <div className="header-container">
           <Link to={"/"}>
             <img alt="netflix" src={Logo} className="header-Logo"/>
@@ -19,7 +23,7 @@ class Header extends Component {
             Sign In
           </Link>
         </div>
-        <Comp />
+        {Comp?<Comp/>:null}
       </div>
     );
   }

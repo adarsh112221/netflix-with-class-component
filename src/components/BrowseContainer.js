@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "./Header";
 import Loading from "./Loading";
 class BrowseContainer extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class BrowseContainer extends Component {
   render() {
     const { loading } = this.state;
     const{src}=this.props
-    return <div>{loading ? <Loading src={src} /> : null}</div>;
+    return <div>{loading ? <Loading src={src} /> :<Header/>}</div>;
   }
 }
 

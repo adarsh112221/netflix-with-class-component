@@ -309,13 +309,6 @@ code {
 .header-background {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.35),
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.35)
-    ),
-    url("./home-bg.jpg"), top left / cover no-repeat;
 }
 .header-container {
   display: flex;
