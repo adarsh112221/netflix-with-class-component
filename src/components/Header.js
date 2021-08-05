@@ -13,7 +13,8 @@ class Header extends Component {
     return (
       <div className="header-background" style={{
       backgroundSize:'contain',
-      background:`url(${Comp?home:joker})`
+      background:`url(${Comp?home:joker})`,
+      backgroundRepeat:'no-repeat'
       }}>
         <div className="header-container">
           <Link to={"/"}>
