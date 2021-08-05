@@ -21,7 +21,6 @@ export default class Browse extends Component {
     });
   };
   componentDidMount() {
-    console.log("aa");
     const items = ["series", "films"];
     items.map((item) =>
       firebase
@@ -56,7 +55,6 @@ export default class Browse extends Component {
     const films = filmscollection;
     const series = seriescollection;
     const slides = loading ? null : selectionFilter({ series, films });
-    console.log(user);
     if (show == false) {
       return (
         <Profile
@@ -69,7 +67,7 @@ export default class Browse extends Component {
       );
     } else {
       console.log("browse");
-      return <BrowseContainer slides={slides} src={user.photoURL} />;
+      return <BrowseContainer slides={slides} src={user.photoURL} user={user} />;
     }
   }
 }

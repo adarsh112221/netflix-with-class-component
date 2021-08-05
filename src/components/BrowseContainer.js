@@ -18,8 +18,9 @@ class BrowseContainer extends Component {
   
   render() {
     const { loading } = this.state;
-    const{src}=this.props
-    return <div>{loading ? <Loading src={src} /> :<HeaderBrowse src={src}/>}</div>;
+    const{src,user}=this.props
+    console.log(user)
+    return <div>{loading ? <Loading src={src} /> :<HeaderBrowse user={user} src={src}/>}</div>;
   }
 }
 
