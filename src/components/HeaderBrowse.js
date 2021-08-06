@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Logo from "../logo.svg";
 import joker from "../joker1.jpg";
 import { Link } from "react-router-dom";
-import {firebase} from "../lib/firebase.prod";
+import { firebase } from "../lib/firebase.prod";
 class HeaderBrowse extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class HeaderBrowse extends Component {
     }
   };
   render() {
-    const { user } = this.props;
+    const { user, changecategory, category } = this.props;
     console.log(user);
     const { searchclass } = this.state;
     return (
@@ -39,8 +39,22 @@ class HeaderBrowse extends Component {
             <Link to={"/"}>
               <img className="header-Logo" alt="netflix" src={Logo} />
             </Link>
-              <p className="header-category">Series</p>
-              <p className="header-category">films</p>
+            <p
+              onClick={() => changecategory()}
+              className={`header-category ${
+                category == 'series' ? "categoryactive" : null
+              }`}
+            >
+              Series
+            </p>
+            <p
+              onClick={() => changecategory()}
+              className={`header-category ${
+                category == "films" ? "categoryactive" : null
+              }`}
+            >
+              films
+            </p>
           </div>
           <div className="search-container">
             <div className="header-search">
@@ -49,7 +63,7 @@ class HeaderBrowse extends Component {
               </button>
               <input
                 className={
-                  searchclass?"header-search-input2" : "header-search-input1"
+                  searchclass ? "header-search-input2" : "header-search-input1"
                 }
                 placeholder="search films and series
             "
@@ -59,11 +73,11 @@ class HeaderBrowse extends Component {
               <img src="/images/users/1.png" className="header-picture" />
               <div className="header-dropdown">
                 <div className="header-group">
-                  <img className="header-picture"  src="/images/users/1.png" />
+                  <img className="header-picture" src="/images/users/1.png" />
                   <p>{user.displayName}</p>
                 </div>
                 <div className="header-group ">
-                  <p onClick={()=>firebase.auth().signOut()}>Sign out</p>
+                  <p onClick={() => firebase.auth().signOut()}>Sign out</p>
                 </div>
               </div>
             </div>
@@ -71,7 +85,13 @@ class HeaderBrowse extends Component {
         </div>
         <div className="header-feature header-container">
           <h2>Watch Joker Now</h2>
-          <p>Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him.</p>
+          <p>
+            Forever alone in a crowd, failed comedian Arthur Fleck seeks
+            connection as he walks the streets of Gotham City. Arthur wears two
+            masks -- the one he paints for his day job as a clown, and the guise
+            he projects in a futile attempt to feel like he's part of the world
+            around him.
+          </p>
           <button>Play</button>
         </div>
       </div>
