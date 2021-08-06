@@ -34,7 +34,7 @@ class BrowseContainer extends Component {
     const { src, user, slides } = this.props;
     console.log(user);
     return (
-      <div>
+      <>
         {loading ? <Loading src={src} /> : null}
         <HeaderBrowse category={category} changecategory={this.changecategory} user={user} src={src} />
         <div className='card-group'>
@@ -46,7 +46,7 @@ class BrowseContainer extends Component {
         ))}
         </div>
         <Footer/>
-      </div>
+      </>
     );
   }
 }
