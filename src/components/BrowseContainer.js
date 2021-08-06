@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HeaderBrowse from "./HeaderBrowse";
 import Loading from "./Loading";
 import Card from "./Card";
+import Footer from "./footer";
 class BrowseContainer extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +45,7 @@ class BrowseContainer extends Component {
           />
         ))}
         </div>
+        <Footer/>
       </div>
     );
   }
