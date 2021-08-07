@@ -8,8 +8,23 @@ class HeaderBrowse extends Component {
     super(props);
     this.state = {
       searchclass: false,
+      searchTerm: "",
     };
   }
+  setSearchTerm = (e) => {
+    const { searchTerm } = this.state;
+    this.setState(
+      () => {
+        return {
+          searchTerm: e.target.value,
+        };
+      },
+      () => {
+        if(searchTerm.length>1)
+        this.props.FuseSearch(searchTerm);
+      }
+    );
+  };
   searchclassset = () => {
     const { searchclass } = this.state;
     if (searchclass == true) {
@@ -25,8 +40,7 @@ class HeaderBrowse extends Component {
   };
   render() {
     const { user, changecategory, category } = this.props;
-    console.log(user);
-    const { searchclass } = this.state;
+    const { searchTerm, searchclass } = this.state;
     return (
       <div
         className="header-background"
@@ -40,15 +54,15 @@ class HeaderBrowse extends Component {
               <img className="header-Logo" alt="netflix" src={Logo} />
             </Link>
             <p
-              onClick={() => changecategory()}
+              onClick={() => changecategory('series')}
               className={`header-category ${
-                category == 'series' ? "categoryactive" : null
+                category == "series" ? "categoryactive" : null
               }`}
             >
               Series
             </p>
             <p
-              onClick={() => changecategory()}
+              onClick={() => changecategory('films')}
               className={`header-category ${
                 category == "films" ? "categoryactive" : null
               }`}
@@ -65,8 +79,8 @@ class HeaderBrowse extends Component {
                 className={
                   searchclass ? "header-search-input2" : "header-search-input1"
                 }
-                placeholder="search films and series
-            "
+                value={searchTerm}
+                onChange={this.setSearchTerm}
               />
             </div>
             <div className="header-profile">

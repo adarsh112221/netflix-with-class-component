@@ -9,7 +9,6 @@ class Card extends Component {
     };
   }
   setshowfeature = (value) => {
-    const { showfeature } = this.state;
     this.setState({
       showfeature: value,
     });

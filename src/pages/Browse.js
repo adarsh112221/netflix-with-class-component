@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import BrowseContainer from "../components/BrowseContainer";
 import { firebase } from "../lib/firebase.prod";
 import Profile from "../components/profile";
+import Fuse from "fuse.js";
 export default class Browse extends Component {
   constructor(props) {
     super(props);
